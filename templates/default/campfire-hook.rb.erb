@@ -16,10 +16,10 @@ end
 #campfire_config[:ssl] = (campfire_config[:ssl] =~ /^yes|true|on|1$/)
 
 campfire_config = Hash.new
-campfire_config[:subdomain] = "<%= @campfire['subdomain'] %>"
-campfire_config[:room] = "<%= @campfire['room'] %>"
-campfire_config[:token] = "<%= @campfire['token'] %>"
-campfire_config[:ssl] = "<%= @campfire['ssl'] =~ /^yes|true|on|1$/ %>"
+campfire_config[:subdomain] = "<%= @config['subdomain'] %>"
+campfire_config[:room] = "<%= @config['room'] %>"
+campfire_config[:token] = "<%= @config['token'] %>"
+campfire_config[:ssl] = "<%= @config['ssl'] =~ /^yes|true|on|1$/ %>"
 
 GitCampfireNotification.new(:ref_name        => ARGV[0],
                             :old_revision    => `git rev-parse #{ARGV[1]}`.strip,

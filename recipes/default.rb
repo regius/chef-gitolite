@@ -67,28 +67,20 @@ gitolite_instances.each do |instance|
     command "/usr/local/bin/gl-setup /tmp/gitolite-#{admin_name}.pub"
     environment ({'HOME' => "/home/#{username}"})
   end
-  
+
   if instance.has_key?('campfire')
-    gem_package "tinder"
-    username = instance['name']
 
-    template "/home/#{username}/.gitolite/hooks/common/campfire-hook.rb" do
-      source "campfire-hook.rb.erb"
-      mode 0755
-      owner username
-      variables( :campfire => instance['campfire'] )
+    post_receive_hook 'campfire' do
+      username username
+      config instance['campfire']
     end
 
-    cookbook_file "/home/#{username}/.gitolite/hooks/common/campfire-notification.rb" do
-      source "campfire-notification.rb"
-      mode 0755
-      owner username
+  elsif instance.has_key?('hipchat')
+
+    post_receive_hook 'hipchat' do
+      username username
+      config instance['hipchat']
     end
 
-    cookbook_file "/home/#{username}/.gitolite/hooks/common/post-receive" do
-      source "campfire-post-receive"
-      mode 0755
-      owner username
-    end
   end
 end
