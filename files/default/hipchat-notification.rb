@@ -143,7 +143,7 @@ class GitHipChatNotification
     if ENV["USE_STDOUT"]
       $stdout.puts("[hipchat p] #{what}")
     else
-      hipchat_room.send(@hipchat_config[:nickname], what, @hipchat_config[:notify])
+      hipchat_room.send(@hipchat_config[:nickname], what, :notify => @hipchat_config[:notify])
     end
   end
 
