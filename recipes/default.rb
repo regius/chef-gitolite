@@ -18,7 +18,6 @@
 #
 
 require_recipe "git"
-require_recipe "ark"
 
 %w{ conf hooks }.each do |dir|
   directory ::File.join('/usr/local/share/gitolite',dir)

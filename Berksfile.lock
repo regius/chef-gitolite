@@ -1,0 +1,5 @@
+cookbook 'gitolite', :path => '/Users/cwj/chef/gitolite'
+cookbook 'git', :locked_version => '1.0.0'
+cookbook 'runit', :locked_version => '0.15.0'
+cookbook 'yum', :locked_version => '0.6.2'
+cookbook 'dmg', :locked_version => '1.0.0'
