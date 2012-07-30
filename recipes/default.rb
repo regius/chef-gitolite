@@ -20,7 +20,9 @@
 require_recipe "git"
 
 %w{ conf hooks }.each do |dir|
-  directory ::File.join('/usr/local/share/gitolite',dir)
+  directory ::File.join('/usr/local/share/gitolite',dir) do
+    recursive true 
+  end
 end
 
 execute 'install_gitolite' do
