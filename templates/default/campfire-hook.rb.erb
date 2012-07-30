@@ -141,7 +141,11 @@ class GitCampfireNotification
     if ENV["USE_STDOUT"]
       paste ? $stdout.puts("[campfire p] #{what}") : $stdout.puts("[campfire] #{what}")
     else
-      paste ? campfire_room.paste(what) : campfire_room.speak(what)
+      begin
+        paste ? campfire_room.paste(what) : campfire_room.speak(what)
+      rescue => e
+        puts "Campfire error: #{e}"
+      end
     end
   end
 
