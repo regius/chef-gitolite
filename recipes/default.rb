@@ -55,11 +55,11 @@ node['gitolite']['instances'].each do |instance|
   admin_name = instance['admin']
   admin_ssh_key = data_bag_item('users',admin_name)['ssh_keys']
 
-  Chef::Log.info('admin key: ' + admin_ssh_key)
+  Chef::Log.info('admin key: ' + admin_ssh_key.first)
 
   file "/tmp/gitolite-#{admin_name}.pub" do
     owner username
-    content Array(admin_ssh_key).first
+    content admin_ssh_key.first
   end
 
 #  template "/home/#{username}/.gitolite.rc" do
